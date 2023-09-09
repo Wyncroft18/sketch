@@ -1,1 +1,1 @@
-# sketch
+My etc-a-sketch project from The Odin Project. This project will test everything that I have learned before. Let's give it a try!
