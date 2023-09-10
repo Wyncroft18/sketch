@@ -1,4 +1,5 @@
 const container = document.querySelector(".container");
+let drag = false;
 
 function makeGrid(x) {
   for (let rows = 0; rows < x; rows++) {
@@ -15,4 +16,20 @@ function makeGrid(x) {
   }
 };
 
-makeGrid(10);
+function removeGrid() {
+  container.innerHTML = "";
+}
+
+function newGrid() {
+  const input = prompt("Enter number of squares per side (e.g. 64 for a 64 x 64 grid)");
+  if (input < 8 || input > 64) {
+    alert("Invalid input, please input from 8 to 64 only.");
+  } else {
+    removeGrid();
+    makeGrid(input);
+  }
+}
+
+window.onload = () => {
+  makeGrid(64);
+};
