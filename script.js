@@ -1,5 +1,8 @@
 const container = document.querySelector(".container");
-let drag = false;
+
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
 
 function makeGrid(x) {
   for (let rows = 0; rows < x; rows++) {
@@ -8,13 +11,17 @@ function makeGrid(x) {
         grid.classList.add("grid");
         grid.style.width = `${960/x}px`;
         grid.style.height = `${960/x}px`;
-        grid.addEventListener("mouseover", function() {
-          grid.style.backgroundColor = "black";
-        });
+        grid.addEventListener("mouseover", changeColor);
+        grid.addEventListener("mousedown", changeColor);
         container.appendChild(grid);
     }
   }
 };
+
+function changeColor(e) {
+  if (e.type === 'mouseover' && !mouseDown) return
+  e.target.style.backgroundColor = "black";
+}
 
 function removeGrid() {
   container.innerHTML = "";
